@@ -20,7 +20,7 @@ plt.title("color histogram")
 plt.xlabel("Bins")
 plt.ylabel("num of Pixels")
 plt.show()
-
+#grya histo gram full version
 gray = cv2.imread("lena.jpg", cv2.IMREAD_GRAYSCALE)
 hist_full = cv2.calcHist([gray], [0], None, [256], [0, 256])
 plt.title("gray histogram(hist full)")
