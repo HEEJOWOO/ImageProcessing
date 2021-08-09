@@ -15,9 +15,9 @@ while True:
 
     color_mask = cv2.inRange(hsv, lowerBound, upperBound)
 
-    ret1, threshol = cv2.threshold(color_mask , 127, 255, 0)
+    ret, threshold = cv2.threshold(color_mask , 127, 255, 0)
 
-    contours, _ = cv2.findContours(threshol, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     if len(contours) > 0:
         for i in range(len(contours)):
@@ -28,10 +28,12 @@ while True:
                 box = cv2.boxPoints(rect)
                 box = np.int0(box)
                 cv2.drawContours(frame, [box], 0, (0, 0, 255), 2)
-    
+
     cv2.imshow('color_bitwise',color_mask)
     cv2.imshow('cam_load',frame)
-    cv2.waitKey()
+    k = cv2.waitKey(1) & 0xFF
+    if k == 27:
+        break
 
 cap.release()
 cv2.destroyAllWindows()
