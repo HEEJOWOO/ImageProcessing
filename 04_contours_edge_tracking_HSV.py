@@ -28,14 +28,10 @@ while True:
                 box = cv2.boxPoints(rect)
                 box = np.int0(box)
                 cv2.drawContours(frame, [box], 0, (0, 0, 255), 2)
-    if not ret:
-        print('error')
-        break
+    
     cv2.imshow('color_bitwise',color_mask)
     cv2.imshow('cam_load',frame)
-    k = cv2.waitKey(1) & 0xFF
-    if k == 27:
-        break
+    cv2.waitKey()
 
 cap.release()
 cv2.destroyAllWindows()
